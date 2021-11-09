@@ -1,0 +1,28 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+td, th {
+    padding: 10px;
+    text-align: center;
+}
+
+.newBookForm {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border: 1px solid black;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.closed {
+    display: none;
+}
+
+.close {
+    margin: -10px -5px -20px -5px;
+    align-self: flex-end;
+}
