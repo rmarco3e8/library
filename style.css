@@ -1,5 +1,12 @@
+body {
+    display: flex;
+    justify-content: space-around;
+    background-color: #a48b5a ;
+}
+
 table, th, td {
-    border: 1px solid black;
+    border: 3px solid #55482f;
+    background-color: #cfc2a9;
 }
 
 td, th {
@@ -7,15 +14,47 @@ td, th {
     text-align: center;
 }
 
+table {
+    font-size: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
 .newBookForm {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    border: 1px solid black;
+    width: 400px;
+    height: 800px;
+    border: 3px solid #55482f;
+    background-color: #cfc2a9;
     padding: 20px;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    font-size: 30px;
+}
+
+.close,
+.add-book {
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+input {
+    background-color: #cdbfa4;
+}
+
+button {
+    background-color: #cfc2a9;
+}
+
+.newBookButton {
+    padding: 20px;
+    font-size: 20px;
+    width: 446px;
 }
 
 .closed {
@@ -23,6 +62,6 @@ td, th {
 }
 
 .close {
-    margin: -10px -5px -20px -5px;
+    margin: -50px -5px -80px -5px;
     align-self: flex-end;
 }
