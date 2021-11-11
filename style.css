@@ -10,7 +10,7 @@ table, th, td {
 }
 
 td, th {
-    padding: 10px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -21,6 +21,18 @@ table {
 .menu {
     display: flex;
     flex-direction: column;
+}
+
+.read-button,
+.del-button {
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+.del-button {
+    background-color: red;
+    color: white;
+    font-weight: 700;
 }
 
 .newBookForm {
@@ -55,6 +67,7 @@ button {
     padding: 20px;
     font-size: 20px;
     width: 446px;
+    font-weight: 700;
 }
 
 .closed {

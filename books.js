@@ -4,7 +4,12 @@ function Book(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
+    if (read) {
+        this.read = "✓"
+    } else {
+        this.read = "x"
+    }
+    this.id = myLibrary.length
 }
 
 Book.prototype.info = function () {
@@ -32,11 +37,41 @@ function displayBooks() {
         let newRow = document.createElement("tr")
 
         for (prop in book) {
-            if (!book.hasOwnProperty(prop)) continue
+            if (!book.hasOwnProperty(prop) || prop === "id") continue
+
             cell = document.createElement("td")
-            cell.textContent = book[prop]
-            newRow.appendChild(cell)
+
+            if (prop === "read") {
+                readButton = document.createElement("button")
+                readButton.textContent = book[prop]
+                readButton.addEventListener("click", toggleRead)
+                readButton.setAttribute('book-id', book["id"])
+                readButton.classList.add("read-button")
+
+
+                if (book[prop] === "x") {
+                    readButton.style.background = "#C85C5C"
+                } else {
+                    readButton.style.background = "#B2EA70"
+                }
+
+                cell.appendChild(readButton)
+            }
+            else {
+                cell.textContent = book[prop]
+            }
+
+            newRow.append(cell)
         }
+
+        cell = document.createElement("td")
+        delButton = document.createElement("button")
+        delButton.textContent = "DELETE"
+        delButton.addEventListener("click", deleteBook)
+        delButton.setAttribute('book-id', book["id"])
+        delButton.classList.add("del-button")
+        cell.appendChild(delButton)
+        newRow.append(cell)
 
         bookTableBody.appendChild(newRow)
     })
@@ -58,12 +93,34 @@ function submitBook(e) {
     let title = document.forms[0][1].value
     let author = document.forms[0][2].value
     let pages = document.forms[0][3].value
-    let read = document.forms[0][4].value
+    let read = document.forms[0][4].checked
     let newBook = new Book(title, author, pages, read)
     addToLibrary(newBook)
     closeForm();
 }
 
+function toggleRead() {
+    let id = parseInt(this.getAttribute("book-id"))
+
+    if (this.textContent == "x") {
+        this.textContent = "✓"
+        myLibrary[id].read = "✓"
+        this.style.background = "#B2EA70"
+    }
+    
+    else {
+        this.textContent = "x"
+        myLibrary[id].read = "x"
+        this.style.background = "#C85C5C"
+    }
+}
+
+function deleteBook() {
+    let id = parseInt(this.getAttribute("book-id"))
+    let index = myLibrary.find(book => book.id === id)
+    myLibrary.splice(index, 1)
+    displayBooks()
+}
 
 // Example : EighthGrader.prototype = Object.create(Student.prototype)
 
